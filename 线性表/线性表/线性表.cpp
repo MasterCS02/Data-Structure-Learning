@@ -461,31 +461,117 @@
 //}
 
 //静态链表
-#define MaxSize 10
-struct Node
+//#define MaxSize 10
+//struct Node
+//{
+//	ElemType data;
+//	int next;
+//};
+//
+//bool InitSLinkList(struct Node* arr)
+//{
+//	int i = 0;
+//	arr[0].data = 0;   //假设ElemType为int
+//	arr[0].next = -1;
+//
+//	for (i = 1; i < MaxSize; i++)
+//	{
+//		arr[i].data = 0;
+//		arr[i].next = -2;
+//	}
+//
+//	return true;
+//}
+//
+//void testSLinkList()
+//{
+//	struct Node arr[MaxSize];  //数组arr作为静态链表
+//
+//	InitSLinkList(arr);
+//}
+
+
+typedef struct LNode
 {
-	ElemType data;
-	int next;
-};
+	int data;
+	struct LNode* next;
+}LNode,*LinkList;
 
-bool InitSLinkList(struct Node* arr)
+//创建带有头结点的单链表
+bool InitList(LinkList& L)
 {
-	int i = 0;
-	arr[0].data = 0;   //假设ElemType为int
-	arr[0].next = -1;
-
-	for (i = 1; i < MaxSize; i++)
-	{
-		arr[i].data = 0;
-		arr[i].next = -2;
-	}
-
+	L = (LNode*)malloc(sizeof(LNode));
+	if (L == NULL)
+		return false;
+	L->next = NULL;
 	return true;
 }
 
-void testSLinkList()
+//后插插入元素
+bool InsertNextNode(LinkList& L, int x)
 {
-	struct Node arr[MaxSize];  //数组arr作为静态链表
+	//创建新结点
+	LNode* p = (LNode*)malloc(sizeof(LNode));
+	//创建尾指针
+	LNode* r = (LNode*)malloc(sizeof(LNode));
 
-	InitSLinkList(arr);
+	if (p == NULL || r == NULL)
+		return false;
+	p->data = x;
+	p->next = L->next;
+	L->next = p;
+	r = p;
+	return true;
+}
+
+//头插法左旋p个元素
+bool LeftMove(LinkList& L, int p,int n)
+{
+	//假设p=4
+	//遍历数组，找到第p个结点
+	int j = 1;  //记录q指针的位置
+	LNode* q = (LNode*)malloc(sizeof(LNode));
+	LNode* tmp = (LNode*)malloc(sizeof(LNode));
+
+	while (q != NULL && j < p)
+	{
+		q = q->next;
+		j++;
+	}
+
+	tmp = q;
+
+	while (tmp != NULL && q != NULL && j < n)
+	{
+		tmp->next = L->next;
+		L->next = tmp;
+		q = q->next;
+		tmp = q;
+	}
+
+	return true;
+
+}
+
+
+int main()
+{
+	LinkList L;
+	InitList(L);
+	int x = 0;
+	int n = 10; //假设插入10个元素
+
+	//插入元素
+	scanf("%d", &x);
+	while (n--)
+	{
+		InsertNextNode(L, x);
+		scanf("%d", &x);
+	}
+
+
+
+
+
+	return 0;
 }
