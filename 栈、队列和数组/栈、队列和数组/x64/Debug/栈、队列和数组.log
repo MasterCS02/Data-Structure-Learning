@@ -1,0 +1,7 @@
+﻿  栈的括号匹配.cpp
+E:\Visual Studio 2022\Code\数据结构\栈、队列和数组\栈、队列和数组\栈的括号匹配.cpp(104,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“size_t”
+      E:\Visual Studio 2022\Code\数据结构\栈、队列和数组\栈、队列和数组\栈的括号匹配.cpp(104,9):
+      请考虑在格式字符串中使用“%zd”
+  
+E:\Visual Studio 2022\Code\数据结构\栈、队列和数组\栈、队列和数组\栈的括号匹配.cpp(105,24): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  栈、队列和数组.vcxproj -> E:\Visual Studio 2022\Code\数据结构\栈、队列和数组\x64\Debug\栈、队列和数组.exe
